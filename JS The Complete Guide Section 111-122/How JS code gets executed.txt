@@ -1,0 +1,6 @@
+Heap
+  -long term memory pool
+  -stores data in system memory (browser does manages allocation)
+Stack
+  -holds execution context
+  -manages your program flow (function calls and communication)

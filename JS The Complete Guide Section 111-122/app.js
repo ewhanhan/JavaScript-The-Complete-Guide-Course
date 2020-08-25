@@ -12,3 +12,7 @@
 'use strict'
 username = "test"
 console.log(username);
+
+
+//var has global/ function(local) scope
+//let and const have block scope
