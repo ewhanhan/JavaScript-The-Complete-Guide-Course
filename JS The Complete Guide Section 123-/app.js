@@ -4,10 +4,14 @@ const ROCK = "ROCK";
 const PAPER = "PAPER";
 const SCISSORS = "SCISSORS";
 const DEFAULT_CHOICE = ROCK;
+const RESULT_DRAW = "DRAW";
+const RESULT_PLAYER_WINS = "PLAYER_WINS";
+const RESULT_COMPUTER_WINS = "COMPUTER_WINS";
 
 let gameIsRunning = false;
 
-const getPLayerChoice = function getPlayerChoice() {
+//Using named function expression
+const getPlayerChoice = function getPlayerChoice() {
   const selection = prompt(
     `${ROCK}, ${PAPER}, or ${SCISSORS}`,
     DEFAULT_CHOICE
@@ -19,12 +23,52 @@ const getPLayerChoice = function getPlayerChoice() {
   return selection;
 };
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+}
+
+const getComputerChoice = function () {
+  const randomValue = getRandomInt(1, 4);
+  let computerChoice;
+  console.log(randomValue);
+  switch (randomValue) {
+    case 1:
+      computerChoice = ROCK;
+      break;
+    case 2:
+      computerChoice = PAPER;
+      break;
+    case 3:
+      computerChoice = SCISSORS;
+      break;
+  }
+  return computerChoice;
+};
+
+const getWinner = function (computerChoice, playerChoice) {
+  if (computerChoice === playerChoice) {
+    return RESULT_DRAW;
+  } else if (
+    (computerChoice === ROCK && playerChoice == PAPER) ||
+    (computerChoice === PAPER && playerChoice === SCISSORS) ||
+    (computerChoice === SCISSORS && playerChoice === ROCK)
+  ) {
+    return RESULT_PLAYER_WINS;
+  } else {
+    return RESULT_COMPUTER_WINS;
+  }
+};
+
 startGameBtn.addEventListener("click", function startGame() {
   if (gameIsRunning) {
     return;
   }
   gameIsRunning = true;
   alert("Game is starting...");
-  const playerSelection = getPLayerChoice();
-  console.log(playerSelection);
+  const playerSelection = getPlayerChoice();
+  const getComputerSelection = getComputerChoice();
+  const getWin = getWinner(getComputerSelection, playerSelection);
+  console.log(getWin);
 });
