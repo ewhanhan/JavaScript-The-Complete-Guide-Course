@@ -1,3 +1,4 @@
+"use strict";
 const startGameBtn = document.getElementById("start-game-btn");
 
 const ROCK = "ROCK";
@@ -32,7 +33,6 @@ function getRandomInt(min, max) {
 const getComputerChoice = function () {
   const randomValue = getRandomInt(1, 4);
   let computerChoice;
-  console.log(randomValue);
   switch (randomValue) {
     case 1:
       computerChoice = ROCK;
@@ -47,19 +47,14 @@ const getComputerChoice = function () {
   return computerChoice;
 };
 
-const getWinner = function (computerChoice, playerChoice) {
-  if (computerChoice === playerChoice) {
-    return RESULT_DRAW;
-  } else if (
-    (computerChoice === ROCK && playerChoice == PAPER) ||
-    (computerChoice === PAPER && playerChoice === SCISSORS) ||
-    (computerChoice === SCISSORS && playerChoice === ROCK)
-  ) {
-    return RESULT_PLAYER_WINS;
-  } else {
-    return RESULT_COMPUTER_WINS;
-  }
-};
+const getWinner = (computerChoice, playerChoice) =>
+  computerChoice === playerChoice
+    ? RESULT_DRAW
+    : (computerChoice === ROCK && playerChoice == PAPER) ||
+      (computerChoice === PAPER && playerChoice === SCISSORS) ||
+      (computerChoice === SCISSORS && playerChoice === ROCK)
+    ? RESULT_PLAYER_WINS
+    : RESULT_COMPUTER_WINS;
 
 startGameBtn.addEventListener("click", function startGame() {
   if (gameIsRunning) {
@@ -68,7 +63,10 @@ startGameBtn.addEventListener("click", function startGame() {
   gameIsRunning = true;
   alert("Game is starting...");
   const playerSelection = getPlayerChoice();
-  const getComputerSelection = getComputerChoice();
-  const getWin = getWinner(getComputerSelection, playerSelection);
+  const computerSelection = getComputerChoice();
+  console.log(
+    `Player choice ${playerSelection} \nComputer choice ${computerSelection}`
+  );
+  const getWin = getWinner(computerSelection, playerSelection);
   console.log(getWin);
 });
