@@ -47,27 +47,27 @@ function calculateResult(calculationType) {
   createLogEntry(calculationType, initialResult, enteredNumber, currentResult);
 }
 
-function resetNumber() {
-  userInput.value = "0";
-}
+// function resetNumber() {
+//   userInput.value = "0";
+// }
 
-function add() {
-  calculateResult("ADD");
-}
+// function add() {
+//   calculateResult("ADD");
+// }
 
-function subtract() {
-  calculateResult("SUBTRACT");
-}
+// function subtract() {
+//   calculateResult("SUBTRACT");
+// }
 
-function divide() {
-  calculateResult("DIVIDE");
-}
+// function divide() {
+//   calculateResult("DIVIDE");
+// }
 
-function multiply() {
-  calculateResult("MULTIPLY");
-}
+// function multiply() {
+//   calculateResult("MULTIPLY");
+// }
 
-addBtn.addEventListener("click", add);
-subtractBtn.addEventListener("click", subtract);
-multiplyBtn.addEventListener("click", multiply);
-divideBtn.addEventListener("click", divide);
+addBtn.addEventListener("click", calculateResult.bind(this, "ADD"));
+subtractBtn.addEventListener("click", calculateResult.bind(this, "SUBTRACT"));
+multiplyBtn.addEventListener("click", calculateResult.bind(this, "DIVIDE"));
+divideBtn.addEventListener("click", calculateResult.bind(this, "MULTIPLY"));
