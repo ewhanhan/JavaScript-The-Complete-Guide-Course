@@ -73,4 +73,13 @@ button2.addEventListener('click', () => {
 document.body.appendChild(button2)
 
 const button2Clone = button2.cloneNode(true);
-document.body.appendChild(button2Clone); //clone does not copy eventlisteners
+document.body.appendChild(button2Clone); //clone does not copy eventliste
+
+
+const testDiv = document.getElementById("testImage");
+const imageSRC = document.querySelector("img")
+console.log(imageSRC.src.textContent="test")
+
+let newListItem = document.createElement("li"); //create new list item
+newListItem.textContent="NEW ITEM"
+ul.appendChild(newListItem) //Append to end of the list
