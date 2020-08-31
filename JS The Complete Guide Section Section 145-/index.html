@@ -6,14 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>DOM Interaction</title>
     <script src="app.js" defer></script>
+    <style>
+      .red-bg {
+        background-color: red;
+        color: white;
+      }
+
+      .visible {
+        display: block;
+      }
+
+      .invisible {
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <h1 id="main-title">Diving into DOM</h1>
-    <ul class="listOfItems">
-      <li class="listItems">Item 1</li>
-      <li class="listItems">Item 2</li>
-      <li class="listItems">Item 3</li>
-    </ul>
-    <input type="text" value="DEFAULT-TEXT">
+    <section>
+      <ul class="listOfItems">
+        <li class="listItems">Item 1</li>
+        <li class="listItems">Item 2</li>
+        <li class="listItems">Item 3</li>
+      </ul>
+    </section>
+    <button>Toggle visibility</button>
+    <input type="text" value="DEFAULT-TEXT" />
   </body>
 </html>

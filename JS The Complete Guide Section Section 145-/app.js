@@ -42,3 +42,23 @@ console.log(ul.previousElementSibling) //previous element at same hierarchy as u
 console.log(ul.nextElementSibling)
 
 console.log(ul.querySelectorAll('.listItems'))
+
+
+const section = document.querySelector('section');
+// section.style.backgroundColor = "green";
+section.className = "red-bg visible invisible"
+
+const button = document.querySelector('button');
+button.addEventListener('click', () => {
+  // if(section.className === 'red-bg visible'){
+  //   section.className = "red-bg invisible";
+  // } else {
+  //   section.className = "red-bg visible"
+  // }
+  section.className = (section.className === 'red-bg visible') ? "red-bg invisible": "red-bg visible";
+
+  // section.classList.toggle('invisible')
+  //alternatively we can section.classList.toggle('invisible')
+  //must have invisible class in section first
+
+})
