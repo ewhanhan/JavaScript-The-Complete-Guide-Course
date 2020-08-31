@@ -66,5 +66,11 @@ button.addEventListener('click', () => {
 
 let button2 = document.createElement('BUTTON');
 button2.textContent = "Test"
+button2.addEventListener('click', () => {
+  console.log("TEST BUTTON!");
+})
 
 document.body.appendChild(button2)
+
+const button2Clone = button2.cloneNode(true);
+document.body.appendChild(button2Clone); //clone does not copy eventlisteners
