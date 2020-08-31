@@ -61,4 +61,10 @@ button.addEventListener('click', () => {
   //alternatively we can section.classList.toggle('invisible')
   //must have invisible class in section first
 
+  section.insertAdjacentHTML("beforeend", "<p>test</p>")
 })
+
+let button2 = document.createElement('BUTTON');
+button2.textContent = "Test"
+
+document.body.appendChild(button2)
