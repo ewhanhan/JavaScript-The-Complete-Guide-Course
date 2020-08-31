@@ -26,4 +26,19 @@ input.value = "CHANGE DEFAULT-TEXT";
 // ancestor --> direct or indirect node/element
 
 const ul = document.querySelector('ul');
-const liItem = ul.children //return children elements 
+const liItem = ul.children //return children elements as Htmlcollection object (an array-like object)
+
+
+const h1 = document.getElementById('main-title');
+h1.style.color = 'red';
+h1.textContent = "Some New Title"
+
+const li = document.querySelector('li:last-of-type'); //Select specific li item with a CSS psudeo-class
+
+
+console.log(li.parentElement) //parent element of li --> ul element
+console.log(li.parentNode) //parent element of li --> ul element
+console.log(ul.previousElementSibling) //previous element at same hierarchy as ul --> h1 element
+console.log(ul.nextElementSibling)
+
+console.log(ul.querySelectorAll('.listItems'))
