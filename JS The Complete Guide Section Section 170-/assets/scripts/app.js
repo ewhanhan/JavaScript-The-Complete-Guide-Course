@@ -10,6 +10,32 @@ const addMovieButton = document.getElementsByClassName("btn btn--success")[0];
 const userInputs = addMovieModal.getElementsByTagName("input");
 const MoviesArray = [];
 
+const entryTextSection = document.getElementById("entry-text");
+
+const updateUI = () => {
+  if (MoviesArray === 0) {
+    entryTextSection.style.display = "block";
+  } else {
+    entryTextSection.style.display = "none";
+  }
+};
+
+const renderMovies = (title, imageURL, rating) => {
+  const newMovieElem = document.createElement("li");
+  newMovieElem.className = "movie-element";
+  newMovieElem.innerHTML = `
+  <div class="movie-element__image">
+    <img src="${imageURL}" alt="${title}">
+  </div>
+  <div class="movie-element__info">
+    <h2>${title}</h2>
+    <p>${rating}/5</p>
+  </div> 
+  `;
+  const listRoot = document.getElementById("movie-list");
+  listRoot.appendChild(newMovieElem);
+};
+
 const toggleMovieModal = () => {
   addMovieModal.classList.toggle("visible"); //if visible class is there, remove it. If it's not there add it
   toggleBackdrop();
@@ -38,7 +64,7 @@ sanitizer = (params) => {
 
 const addMovieHander = () => {
   const MOVIE_TITLE = sanitizer(userInputs[0].value.trim());
-  const MOVIE_IMAGE = sanitizer(userInputs[1].value.trim());
+  const MOVIE_IMAGE = userInputs[1].value.trim();
   const MOVIE_RATING = sanitizer(userInputs[2].value.trim());
   const MOVIE = {
     TITLE: MOVIE_TITLE,
@@ -52,9 +78,12 @@ const addMovieHander = () => {
     MOVIE_RATING > 5
   ) {
     alert(`Please fill out the movie rating properly`);
+    return;
   }
   MoviesArray.push(MOVIE);
   clearInputs();
+  renderMovies(MOVIE.TITLE, MOVIE.IMAGE_URL, MOVIE.RATING);
+  updateUI();
 };
 
 const clearInputs = () => {
