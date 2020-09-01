@@ -8,6 +8,7 @@ const cancelAddMovieButton = document.getElementsByClassName(
 )[0];
 const addMovieButton = document.getElementsByClassName("btn btn--success")[0];
 const userInputs = addMovieModal.getElementsByTagName("input");
+const MoviesArray = [];
 
 const toggleMovieModal = () => {
   addMovieModal.classList.toggle("visible"); //if visible class is there, remove it. If it's not there add it
@@ -36,19 +37,29 @@ sanitizer = (params) => {
 };
 
 const addMovieHander = () => {
+  const MOVIE_TITLE = sanitizer(userInputs[0].value.trim());
+  const MOVIE_IMAGE = sanitizer(userInputs[1].value.trim());
+  const MOVIE_RATING = sanitizer(userInputs[2].value.trim());
   const MOVIE = {
-    TITLE: sanitizer(userInputs[0].value.trim()),
-    IMAGE_URL: sanitizer(userInputs[1].value.trim()),
-    RATING: sanitizer(userInputs[2].value.trim()),
+    TITLE: MOVIE_TITLE,
+    IMAGE_URL: MOVIE_IMAGE,
+    RATING: MOVIE_RATING,
   };
-  for (const prop in MOVIE) {
-    if (MOVIE[prop] === "") {
-      alert(`Please fill out ${prop} properly`);
-    }
-  }
-  const MOVIERATING = MOVIE.RATING;
-  if (MOVIERATING < 1 || MOVIERATING > 5) {
+  if (
+    MOVIE_TITLE === "" ||
+    MOVIE_IMAGE === "" ||
+    MOVIE_RATING < 1 ||
+    MOVIE_RATING > 5
+  ) {
     alert(`Please fill out the movie rating properly`);
+  }
+  MoviesArray.push(MOVIE);
+  clearInputs();
+};
+
+const clearInputs = () => {
+  for (const inputField of userInputs) {
+    inputField.value = "";
   }
 };
 
