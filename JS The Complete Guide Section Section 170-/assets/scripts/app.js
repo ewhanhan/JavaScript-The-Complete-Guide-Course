@@ -1,4 +1,4 @@
-// "use strict";
+"use strict";
 
 const addMovieModal = document.getElementById("add-modal"); //tends to have better performance if getting by ID over querySelector
 const startMovieModal = document.querySelector("header button"); // const startMovieModal = document.querySelector("header").lastElementChild;
@@ -8,9 +8,9 @@ const cancelAddMovieButton = document.getElementsByClassName(
 )[0];
 const addMovieButton = document.getElementsByClassName("btn btn--success")[0];
 const userInputs = addMovieModal.getElementsByTagName("input");
-const MoviesArray = [];
-
+const listRoot = document.getElementById("movie-list");
 const entryTextSection = document.getElementById("entry-text");
+const MoviesArray = [];
 
 const updateUI = () => {
   if (MoviesArray === 0) {
@@ -20,7 +20,19 @@ const updateUI = () => {
   }
 };
 
-const renderMovies = (title, imageURL, rating) => {
+const deleteMovieHandler = (movieID) => {
+  let movieIndex = 0;
+  for (const movies of MoviesArray) {
+    if (movies.ID === movieID) {
+      break;
+    }
+    movieIndex++;
+  }
+  MoviesArray.splice(movieIndex, 1); //remove the movie from the array
+  listRoot.children[movieIndex].remove(); //remove the movie from the UI
+};
+
+const renderMovies = (ID, title, imageURL, rating) => {
   const newMovieElem = document.createElement("li");
   newMovieElem.className = "movie-element";
   newMovieElem.innerHTML = `
@@ -32,7 +44,7 @@ const renderMovies = (title, imageURL, rating) => {
     <p>${rating}/5</p>
   </div> 
   `;
-  const listRoot = document.getElementById("movie-list");
+  newMovieElem.addEventListener("click", deleteMovieHandler.bind(null, ID)); //use bind to pass a default initial argument of the movie ID
   listRoot.appendChild(newMovieElem);
 };
 
@@ -49,7 +61,7 @@ const backdropClickHandler = () => {
   toggleBackdrop();
 };
 
-sanitizer = (params) => {
+const sanitizer = (params) => {
   const map = {
     "&": "&amp;",
     "<": "&lt;",
@@ -62,11 +74,12 @@ sanitizer = (params) => {
   return params.replace(reg, (match) => map[match]);
 };
 
-const addMovieHander = () => {
+const addMovieHandler = () => {
   const MOVIE_TITLE = sanitizer(userInputs[0].value.trim());
   const MOVIE_IMAGE = userInputs[1].value.trim();
   const MOVIE_RATING = sanitizer(userInputs[2].value.trim());
   const MOVIE = {
+    ID: Math.random(),
     TITLE: MOVIE_TITLE,
     IMAGE_URL: MOVIE_IMAGE,
     RATING: MOVIE_RATING,
@@ -82,7 +95,7 @@ const addMovieHander = () => {
   }
   MoviesArray.push(MOVIE);
   clearInputs();
-  renderMovies(MOVIE.TITLE, MOVIE.IMAGE_URL, MOVIE.RATING);
+  renderMovies(MOVIE.ID, MOVIE.TITLE, MOVIE.IMAGE_URL, MOVIE.RATING);
   updateUI();
 };
 
@@ -98,4 +111,4 @@ const cancelAddMovie = () => {
 
 startMovieModal.addEventListener("click", toggleMovieModal);
 cancelAddMovieButton.addEventListener("click", cancelAddMovie);
-addMovieButton.addEventListener("click", addMovieHander);
+addMovieButton.addEventListener("click", addMovieHandler);
