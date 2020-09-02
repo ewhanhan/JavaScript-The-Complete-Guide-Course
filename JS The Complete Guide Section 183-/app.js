@@ -44,3 +44,16 @@ Array.from([1, 2, 3, 4, 5], (item, Index) => {
 const listHTMLElement = document.querySelectorAll("li"); //returns nodelist
 const newListHTMLArray = Array.from(listHTMLElement); //convert nodelist to array
 console.log(newListHTMLArray);
+
+let newPushArray = ["Sports", "Coding"];
+newPushArray.push("Testing");
+console.log("After push 'Testing'", newPushArray);
+newPushArray.unshift("first item");
+console.log(
+  "After unshift, it will add to the front of the array",
+  newPushArray
+);
+
+const poppedVal = newPushArray.pop(); //remove and return last element of the array
+console.log(newPushArray);
+newPushArray.shift(); //removes and returns first element of the array
