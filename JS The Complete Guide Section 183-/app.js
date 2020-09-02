@@ -57,3 +57,19 @@ console.log(
 const poppedVal = newPushArray.pop(); //remove and return last element of the array
 console.log(newPushArray);
 newPushArray.shift(); //removes and returns first element of the array
+
+// Remove 0 (zero) elements before index 2, and insert "drum"
+let myFish = ["angel", "clown", "mandarin", "sturgeon"];
+let removed = myFish.splice(2, 0, "drum", "test");
+// myFish is ["angel", "clown", "drum", "test" "mandarin", "sturgeon"]
+// removed is [], no elements removed
+console.log(myFish);
+
+myFish.splice(2, 1); //delete item at index 2
+console.log(myFish);
+
+myFish.splice(2, 2); //remove 2 elements after index
+console.log(myFish);
+
+myFish.splice(0, 2, "new item", "new item 2"); //replace index 1 and 2 with new item and new item 2 respectively
+console.log(myFish);
