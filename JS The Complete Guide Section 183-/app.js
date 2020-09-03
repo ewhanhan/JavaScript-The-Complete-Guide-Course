@@ -73,3 +73,18 @@ console.log(myFish);
 
 myFish.splice(0, 2, "new item", "new item 2"); //replace index 1 and 2 with new item and new item 2 respectively
 console.log(myFish);
+
+const testResult = [1, 2, 3, 4, 5, 6, 7];
+const storedResults = testResult.slice(); //slice() without arguments will copy the entire array
+
+testResult.push("new"); //This will add 'new' to the original array, not the new one
+console.log(testResult, storedResults);
+
+const sliceCopy = storedResults.slice(0, 1); //copy from start index to end index but not including end index
+console.log(sliceCopy);
+
+const sliceCopy2 = storedResults.slice(2); //copy from index argument to the end
+console.log(sliceCopy2);
+
+const newConactArray = sliceCopy2.concat([1, 2, 3, 4]); //concat will create a new array and push the values of the argument array into a new one (combined with the array it's called on)
+console.log(newConactArray);
