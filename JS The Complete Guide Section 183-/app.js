@@ -88,3 +88,45 @@ console.log(sliceCopy2);
 
 const newConactArray = sliceCopy2.concat([1, 2, 3, 4]); //concat will create a new array and push the values of the argument array into a new one (combined with the array it's called on)
 console.log(newConactArray);
+
+console.log("index of 7 inside testResullt array -->", testResult.indexOf(7));
+console.log(
+  "index of new item inside myFish array -->",
+  myFish.indexOf("new item 2")
+);
+
+//The findIndex() method returns the index of the first element in the array
+//that satisfies the provided testing function. Otherwise, it returns -1,
+//indicating that no element passed the test.
+
+const array1 = [5, 12, 8, 130, 44];
+const isLargeNumber = (element) => element > 13;
+console.log(array1.findIndex(isLargeNumber));
+
+//The find() method returns the value of the first element in the provided array
+//that satisfies the provided testing function.
+const inventory = [
+  { name: "apples", quantity: 2 },
+  { name: "bananas", quantity: 0 },
+  { name: "cherries", quantity: 5 },
+];
+
+function isCherries(fruit) {
+  return fruit.name === "cherries";
+}
+
+console.log(inventory.find(isCherries));
+// { name: 'cherries', quantity: 5 }
+
+function isPrime(element, index, array) {
+  let start = 2;
+  while (start <= Math.sqrt(element)) {
+    if (element % start++ < 1) {
+      return false;
+    }
+  }
+  return element > 1;
+}
+
+console.log([4, 6, 8, 12].find(isPrime)); // undefined, not found
+console.log([4, 5, 8, 12].find(isPrime)); // 5
