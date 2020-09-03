@@ -156,7 +156,7 @@ let roots = numbers.map(function (num) {
 console.log(numbers); // numbers is still [1, 4, 9]
 console.log(roots); // roots is now [1, 2, 3]
 
-const prices = [1.99, 2.99, 3.99];
+const prices = [2.99, 1.99, 3.99];
 const tax = 0.19;
 
 const taxAdjustedPrices = prices.map((element, index, arr) => {
@@ -168,3 +168,65 @@ const taxAdjustedPrices = prices.map((element, index, arr) => {
 });
 
 console.log(prices, taxAdjustedPrices);
+
+//sort
+const sortedPrices = prices.sort((a, b) => {
+  if (a > b) {
+    return 1;
+  } else if (a === b) {
+    return 0;
+  } else {
+    return -1;
+  }
+});
+console.log(sortedPrices);
+
+var items = [
+  { name: "Edward", value: 21 },
+  { name: "Sharpe", value: 37 },
+  { name: "And", value: 45 },
+  { name: "The", value: -12 },
+  { name: "Magnetic", value: 13 },
+  { name: "Zeros", value: 37 },
+];
+// sort by value, a-b >= 1, then b is in a lower index
+items.sort(function (a, b) {
+  return a.value - b.value;
+});
+// sort by name
+items.sort(function (a, b) {
+  var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+  var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+
+  // names must be equal
+  return 0;
+});
+
+console.log(items);
+
+//The filter() method creates a new array with all elements that pass the test
+//implemented by the provided function.
+//Filter requires some comparison logic as an argument and will filter the
+//inputs based on true/false return value
+const words = [
+  "spray",
+  "limit",
+  "elite",
+  "exuberant",
+  "destruction",
+  "present",
+];
+const result = words.filter((word) => word.length > 6);
+console.log(result); // expected output: Array ["exuberant", "destruction", "present"]
+
+function isBigEnough(value) {
+  return value >= 10;
+}
+let filtered = [12, 5, 8, 130, 44].filter(isBigEnough); // filtered is [12, 130, 44]
+console.log(filtered);
