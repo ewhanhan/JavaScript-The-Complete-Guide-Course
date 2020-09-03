@@ -23,7 +23,11 @@ whereas Array(7) creates an empty array with a length property of 7
 const moremoreNewArrays = Array.of(1, 2, 3);
 console.log(moremoreNewArrays);
 
-const fromArray = Array.from("foo"); //makes an array from --
+//The Array.from() static method creates a new, shallow-copied Array instance from an array-like or iterable object.
+/* Array.from() lets you create Arrays from:
+  array-like objects (objects with a length property and indexed elements); or
+  iterable objects (objects such as Map and Set). */
+const fromArray = Array.from("foo"); //makes an array from string
 console.log(fromArray);
 
 const fromArrayMore = Array.from([1, 2, 3], (eachItemofArray) => {
@@ -138,7 +142,29 @@ console.log(pets.includes("cat")); // expected output: true
 console.log(pets.includes("at")); // expected output: false
 //This is essentially the same as indexOf
 
+//Foreach
 pets.forEach((element, index, arr) => {
   //foreach has element, index, and array parameters
   console.log(`the pets in this array is: ${element} with index: ${index}`);
 });
+
+//Map function
+let numbers = [1, 4, 9];
+let roots = numbers.map(function (num) {
+  return Math.sqrt(num);
+});
+console.log(numbers); // numbers is still [1, 4, 9]
+console.log(roots); // roots is now [1, 2, 3]
+
+const prices = [1.99, 2.99, 3.99];
+const tax = 0.19;
+
+const taxAdjustedPrices = prices.map((element, index, arr) => {
+  const priceObj = {
+    index: index,
+    tax_price: element * (1 + tax),
+  };
+  return priceObj;
+});
+
+console.log(prices, taxAdjustedPrices);
