@@ -89,6 +89,7 @@ console.log(sliceCopy2);
 const newConactArray = sliceCopy2.concat([1, 2, 3, 4]); //concat will create a new array and push the values of the argument array into a new one (combined with the array it's called on)
 console.log(newConactArray);
 
+//The indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present.
 console.log("index of 7 inside testResullt array -->", testResult.indexOf(7));
 console.log(
   "index of new item inside myFish array -->",
@@ -110,11 +111,9 @@ const inventory = [
   { name: "bananas", quantity: 0 },
   { name: "cherries", quantity: 5 },
 ];
-
 function isCherries(fruit) {
   return fruit.name === "cherries";
 }
-
 console.log(inventory.find(isCherries));
 // { name: 'cherries', quantity: 5 }
 
@@ -127,6 +126,19 @@ function isPrime(element, index, array) {
   }
   return element > 1;
 }
-
 console.log([4, 6, 8, 12].find(isPrime)); // undefined, not found
 console.log([4, 5, 8, 12].find(isPrime)); // 5
+
+// The includes() method determines whether an array includes a certain value among its entries, returning true or false as appropriate.
+const array2 = [1, 2, 3];
+console.log(array2.includes(2)); // expected output: true
+
+const pets = ["cat", "dog", "bat"];
+console.log(pets.includes("cat")); // expected output: true
+console.log(pets.includes("at")); // expected output: false
+//This is essentially the same as indexOf
+
+pets.forEach((element, index, arr) => {
+  //foreach has element, index, and array parameters
+  console.log(`the pets in this array is: ${element} with index: ${index}`);
+});
