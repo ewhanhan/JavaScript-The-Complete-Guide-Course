@@ -230,3 +230,23 @@ function isBigEnough(value) {
 }
 let filtered = [12, 5, 8, 130, 44].filter(isBigEnough); // filtered is [12, 130, 44]
 console.log(filtered);
+
+const filteredArray = prices.filter((element, index) => {
+  return element > 2.0;
+}); //filter if prices are higher than 2
+console.log(
+  "filtered array where new array only has values > 2",
+  filteredArray
+);
+
+let sum = 0;
+prices.forEach((price) => {
+  sum += price;
+});
+
+// The reduce() method executes a reducer function (that you provide) on each element of the array, resulting in single output value.
+sum = prices.reduce((prevValue, curValue, curIndex, array) => {
+  return prevValue + curValue;
+}, 0); //the return value will become the next prevValue (the accumulator). The prevValue will take the first value of the passed array if no initial value is taken
+
+console.log(sum);
