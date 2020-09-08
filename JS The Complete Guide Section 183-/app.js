@@ -149,6 +149,7 @@ pets.forEach((element, index, arr) => {
 });
 
 //Map function
+//The map() method creates a new array with the results of calling a provided function on every element in the calling array.
 let numbers = [1, 4, 9];
 let roots = numbers.map(function (num) {
   return Math.sqrt(num);
@@ -169,7 +170,10 @@ const taxAdjustedPrices = prices.map((element, index, arr) => {
 
 console.log(prices, taxAdjustedPrices);
 
-//sort
+//sort()
+//The sort() method sorts the elements of an array in place and returns
+//the array. The default sort order is built upon converting the elements into
+//strings, then comparing their sequences of UTF-16 code units values.
 const sortedPrices = prices.sort((a, b) => {
   if (a > b) {
     return 1;
@@ -244,9 +248,21 @@ prices.forEach((price) => {
   sum += price;
 });
 
+//reduce()
 // The reduce() method executes a reducer function (that you provide) on each element of the array, resulting in single output value.
 sum = prices.reduce((prevValue, curValue, curIndex, array) => {
   return prevValue + curValue;
 }, 0); //the return value will become the next prevValue (the accumulator). The prevValue will take the first value of the passed array if no initial value is taken
-
 console.log(sum);
+
+//The split() method splits a String object into an array of strings by
+//separating the string into substrings, using a specified separator string to
+//determine where to make each split.
+const data = "new york;10.99;2000";
+const transformedData = data.split(";");
+console.log(transformedData);
+
+//join() return an array with the elements of another array 'joined' together
+const nameFragments = ["Ewhan", "Han"];
+const fullName = nameFragments.join(" ");
+console.log(fullName);
