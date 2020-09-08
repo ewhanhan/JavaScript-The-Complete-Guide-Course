@@ -266,3 +266,40 @@ console.log(transformedData);
 const nameFragments = ["Ewhan", "Han"];
 const fullName = nameFragments.join(" ");
 console.log(fullName);
+
+//Spread syntax allows an iterable such as an array expression or string to be
+//expanded in places where zero or more arguments (for function calls) or
+//elements (for array literals) are expected, or an object expression to be
+//expanded in places where zero or more key-value pairs (for object literals)
+//are expected.
+
+const newCopiedArr = [...transformedData];
+console.log(newCopiedArr);
+
+var parts = ["shoulders", "knees"];
+var lyrics = ["head", ...parts, "and", "toes"]; // ["head", "shoulders", "knees", "and", "toes"]
+
+let lowestValue = Math.min(...array1);
+console.log(lowestValue);
+
+const persons = [
+  {
+    name: "Ewhan",
+    age: 27,
+  },
+  {
+    name: "Han",
+    age: 27,
+  },
+];
+
+//To return an object literal expression requires parentheses around expression:
+const copiedPersons = persons.map((person) => ({
+  name: person.name + "test",
+  age: person.age,
+}));
+persons.push({
+  name: "added person",
+  age: 30,
+});
+console.log(persons, copiedPersons);
