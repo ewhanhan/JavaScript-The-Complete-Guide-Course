@@ -303,3 +303,30 @@ persons.push({
   age: 30,
 });
 console.log(persons, copiedPersons);
+
+//Array destructuring
+const destructArray = ["Ewhan", "Han", "Mr.", 30];
+const [firstName, lastName, ...otherItems] = destructArray;
+console.log(firstName, lastName, otherItems);
+
+//Default values with array destructuring
+let a, b;
+
+[a = 5, b = 7] = [1];
+console.log(a); // 1
+console.log(b); // 7
+
+let [a1 = 1, a22 = 3] = [];
+console.log(a1, a22);
+
+//Swapping variables without a temp
+let a2 = 1;
+let b2 = 3;
+
+[a2, b2] = [b2, a2];
+console.log(a2); // 3
+console.log(b2); // 1
+
+const arr2 = [1, 2, 3];
+[arr2[2], arr2[1]] = [arr2[1], arr2[2]];
+console.log(arr2); // [1,3,2]
