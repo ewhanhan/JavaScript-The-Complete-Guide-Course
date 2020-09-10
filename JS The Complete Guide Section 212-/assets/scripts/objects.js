@@ -8,13 +8,14 @@ const person = {
   greet: function () {
     console.log("Hello!");
   },
+  1: "test",
 };
 //call method
 person.greet();
 
-//get a property with bracket notation, pass in parameter with "" since keys are
-//strings
+//get property w/ bracket notation, pass in parameter with "" since keys are strings
 console.log(person["String property"]);
+console.log(person["1"]);
 
 //Monkey patching
 console.log(person.thisVariableDidntexist); //returns undefined, but this becomes a property of the object now
