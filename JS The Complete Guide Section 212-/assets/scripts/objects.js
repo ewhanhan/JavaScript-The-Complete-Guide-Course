@@ -1,13 +1,20 @@
 //object literal notation
+//all keys in an object are strings or symbols
 const person = {
+  "String property": "first property",
   name: "Ewhan Han",
   age: 27,
   hobbies: ["Tennis", "Coding", "Amazon Shopping"],
   greet: function () {
-    alert("Hello there!");
+    console.log("Hello!");
   },
 };
-// person.greet();//call method
+//call method
+person.greet();
+
+//get a property with bracket notation, pass in parameter with "" since keys are
+//strings
+console.log(person["String property"]);
 
 //Monkey patching
 console.log(person.thisVariableDidntexist); //returns undefined, but this becomes a property of the object now
