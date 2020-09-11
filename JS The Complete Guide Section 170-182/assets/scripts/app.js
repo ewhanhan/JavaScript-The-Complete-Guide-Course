@@ -14,7 +14,7 @@ const toggleBackdrop = () => {
 };
 
 const updateUI = () => {
-  if (movies.length === 0) {
+  if (moviesArr.length === 0) {
     entryTextSection.style.display = "block";
   } else {
     entryTextSection.style.display = "none";
@@ -28,13 +28,13 @@ const closeMovieDeletionModal = () => {
 
 const deleteMovieHandler = (movieId) => {
   let movieIndex = 0;
-  for (const movie of movies) {
+  for (const movie of moviesArr) {
     if (movie.id === movieId) {
       break;
     }
     movieIndex++;
   }
-  movies.splice(movieIndex, 1);
+  moviesArr.splice(movieIndex, 1);
   const listRoot = document.getElementById("movie-list");
   listRoot.children[movieIndex].remove();
   closeMovieDeletionModal();
@@ -123,8 +123,8 @@ const addMovieHandler = () => {
     rating: ratingValue,
   };
 
-  movies.push(newMovie);
-  console.log(movies);
+  moviesArr.push(newMovie);
+  console.log(moviesArr);
   closeMovieModal();
   toggleBackdrop();
   clearMovieInput();
