@@ -47,3 +47,12 @@ let a = {
 };
 
 console.log("Computed property names and values are:", a.foo1, a.foo2, a.foo3); // 1, 2, 3
+
+//Spread operator for objects
+const newPerson = {
+  ...person,
+  age: 28,
+  new: "test",
+  newHobbies: [...person.hobbies, "Memes"],
+}; //copy person into new object, overwrite the existing age property, create a new property
+console.log(newPerson);
