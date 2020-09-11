@@ -56,3 +56,7 @@ const newPerson = {
   newHobbies: [...person.hobbies, "Memes"],
 }; //copy person into new object, overwrite the existing age property, create a new property
 console.log(newPerson);
+
+//Object destructuring
+const { age } = newPerson; //we can extract a specific property from an object
+console.log(age);
