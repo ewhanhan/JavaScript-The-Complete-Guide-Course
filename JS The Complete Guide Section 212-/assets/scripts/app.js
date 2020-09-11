@@ -25,8 +25,8 @@ const renderMovies = (filter = "") => {
   filteredMovies.forEach((movie) => {
     const newMovieElement = document.createElement("li");
     const { info } = movie; //use obj destructuring to get movie-info object inside of the movie object
-    const { title: movieTitle } = info; //extract title property from info object and pass to a variable named movieTitle
-    let movieText = movieTitle + " - ";
+    // const { title: movieTitle } = info; //extract title property from info object and pass to a variable named movieTitle
+    let movieText = movie.formatTitle() + "-";
     for (const key in info) {
       if (key !== "title") {
         movieText += `${key}: ${info[key]}`;
@@ -57,6 +57,11 @@ const addMovieHandler = () => {
       [extraName]: extraValue,
     },
     id: Math.random(),
+    formatTitle: function () {
+      return this.info.title.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      });
+    },
   };
 
   moviesArr.push(newMovie);

@@ -60,3 +60,6 @@ console.log(newPerson);
 //Object destructuring
 const { age } = newPerson; //we can extract a specific property from an object
 console.log(age);
+
+const { new: newVariableName } = newPerson; //extract 'new' property and make it excessible with a new variable name 'newVariableName'
+console.log(newVariableName);
