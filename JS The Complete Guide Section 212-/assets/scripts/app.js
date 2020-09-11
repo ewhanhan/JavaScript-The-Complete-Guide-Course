@@ -27,11 +27,12 @@ const renderMovies = (filter = "") => {
     const newMovieElement = document.createElement("li");
     const { info } = movie; //use obj destructuring to get movie-info object inside of the movie object
     // const { title: movieTitle } = info; //extract title property from info object and pass to a variable named movieTitle
-    let { formatTitle } = movie;
+    // let { formatTitle } = movie;
     // formatTitle = formatTitle.bind(movie); //bind 'this' inside formatTitle method to the movie object
-    let movieText = formatTitle.call(movie) + "-"; //using call to change whom 'this' refers to
+    // let movieText = formatTitle.call(movie) + "-"; //using call to change whom 'this' refers to
+    let movieText = info.formatTitle + "-";
     for (const key in info) {
-      if (key !== "title") {
+      if (key !== "title" && key !== "formatTitle") {
         movieText += `${key}: ${info[key]}`;
       }
     }
@@ -58,13 +59,13 @@ const addMovieHandler = () => {
     info: {
       title: title,
       [extraName]: extraValue,
+      get formatTitle() {
+        return this.title.replace(/\w\S*/g, function (txt) {
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+      },
     },
     id: Math.random(),
-    formatTitle() {
-      return this.info.title.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      });
-    },
   };
 
   moviesArr.push(newMovie);
