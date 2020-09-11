@@ -5,7 +5,7 @@ const searchBtn = document.getElementById("search-btn");
 const moviesArr = [];
 
 //Add movies to the DOM after clicking 'add movie'
-const renderMovies = () => {
+const renderMovies = (filter = "") => {
   const movieListElement = document.getElementById("movie-list");
 
   if (moviesArr.length === 0) {
@@ -15,7 +15,14 @@ const renderMovies = () => {
   }
   movieListElement.innerHTML = "";
 
-  moviesArr.forEach((movie) => {
+  //If there is no search term, use all-movies; else, find the specific movie
+  const filteredMovies = !filter
+    ? moviesArr
+    : moviesArr.filter((movie) => {
+        return movie.info.title.includes(filter);
+      });
+
+  filteredMovies.forEach((movie) => {
     const newMovieElement = document.createElement("li");
     let movieText = movie.info.title + " - ";
     for (const key in movie.info) {
@@ -54,4 +61,9 @@ const addMovieHandler = () => {
   renderMovies();
 };
 
+const searchMovieHandler = () => {
+  const searchTermVal = document.getElementById("filter-title").value;
+  renderMovies(searchTermVal);
+};
 addMovieBtn.addEventListener("click", addMovieHandler);
+searchBtn.addEventListener("click", searchMovieHandler);
