@@ -26,7 +26,9 @@ const renderMovies = (filter = "") => {
     const newMovieElement = document.createElement("li");
     const { info } = movie; //use obj destructuring to get movie-info object inside of the movie object
     // const { title: movieTitle } = info; //extract title property from info object and pass to a variable named movieTitle
-    let movieText = movie.formatTitle() + "-";
+    let { formatTitle } = movie;
+    formatTitle = formatTitle.bind(movie); // bind 'this' inside formatTitle method to the movie object
+    let movieText = formatTitle() + "-";
     for (const key in info) {
       if (key !== "title") {
         movieText += `${key}: ${info[key]}`;
