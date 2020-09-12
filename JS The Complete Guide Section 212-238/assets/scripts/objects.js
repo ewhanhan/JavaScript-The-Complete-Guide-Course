@@ -21,12 +21,12 @@ console.log(person["String property"]);
 console.log(person[1]); //any other value than a string is 'coerced' to a string
 
 //Monkey patching
-console.log(person.thisVariableDidntexist); //returns undefined, but this becomes a property of the object now
-person.thisVariableDidntexist = true;
-console.log(person.thisVariableDidntexist);
+console.log(person.thisVariableDidntExist); //returns undefined, but this becomes a property of the object now
+person.thisVariableDidntExist = true;
+console.log(person.thisVariableDidntExist);
 console.log("We can see that a variable is added during runtime -->", person);
 //delete a property
-delete person.thisVariableDidntexist;
+delete person.thisVariableDidntExist;
 console.log("Delete this new property using 'delete'", person);
 
 //Computed property names
@@ -61,5 +61,22 @@ console.log(newPerson);
 const { age } = newPerson; //we can extract a specific property from an object
 console.log(age);
 
-const { new: newVariableName } = newPerson; //extract 'new' property and make it excessible with a new variable name 'newVariableName'
+const { new: newVariableName } = newPerson; //extract 'new' property and make it accessible with a new variable name 'newVariableName'
 console.log(newVariableName);
+
+const testObject = {
+  info: {
+    age: 27,
+    name: "Ewhan Han",
+  },
+  "test attribute": "Yes",
+};
+
+const newObject = {
+  ...testObject,
+  info: {
+    age: 29,
+  },
+};
+
+console.log(newObject.info["age"]); //name property inside of info will be removed
