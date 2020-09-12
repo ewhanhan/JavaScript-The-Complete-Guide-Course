@@ -17,6 +17,10 @@ class ProductItem {
     this.product = product;
   }
 
+  addToCart() {
+    console.log("Adding to product to cart functionality", this.product);
+  }
+
   render() {
     const productElement = document.createElement("li");
     productElement.className = "product-item";
@@ -31,6 +35,9 @@ class ProductItem {
         </div>
       </div>
     `;
+
+    const addCartButton = productElement.querySelector("button");
+    addCartButton.addEventListener("click", this.addToCart.bind(this)); //bind 'this' ProductItem object, otherwise 'this' in addToCart() will refer to the button
     return productElement;
   }
 }
