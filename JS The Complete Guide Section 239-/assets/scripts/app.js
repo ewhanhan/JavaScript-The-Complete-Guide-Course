@@ -1,9 +1,13 @@
 class Product {
+  //Public instance fields
   // title = 'DEFAULT';
   // imageUrl;
   // description;
   // price;
 
+  //A constructor belongs to a particular class object that is instantiated. The
+  //constructor initializes this object and can provide access to its private
+  //information
   constructor(title, image, desc, price) {
     this.title = title;
     this.imageUrl = image;
@@ -15,9 +19,20 @@ class Product {
 class ShoppingCart {
   items = [];
 
+  set cartItems(val) {
+    this.items = val;
+    this.totalOutput.innerHTML = `<h2>\$${this.totalAmount.toFixed(2)}</h2>`;
+  }
+
+  get totalAmount() {
+    const sum = this.items.reduce((acc, curr) => acc + curr.price, 0);
+    return sum;
+  }
+
   addProduct(product) {
-    this.items.push(product);
-    this.totalOutput.innerHTML = `<h2>Total: \$${1}</h2>`;
+    const updatedItems = [...this.items];
+    updatedItems.push(product);
+    this.cartItems = updatedItems;
   }
 
   render() {
