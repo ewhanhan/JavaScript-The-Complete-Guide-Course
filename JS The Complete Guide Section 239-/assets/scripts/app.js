@@ -17,8 +17,7 @@ class ShoppingCart {
 
   addProduct(product) {
     this.items.push(product);
-    this.totalOutput = `<h2>Total: \$${1}</h2>
-    `;
+    this.totalOutput.innerHTML = `<h2>Total: \$${1}</h2>`;
   }
 
   render() {
@@ -39,7 +38,7 @@ class ProductItem {
   }
 
   addToCart() {
-    console.log("Adding to product to cart functionality", this.product);
+    App.addProductToCart(this.product);
   }
 
   render() {
@@ -96,8 +95,8 @@ class Shop {
   render() {
     const renderHook = document.getElementById("app");
 
-    const cart = new ShoppingCart();
-    const cartElement = cart.render();
+    this.cart = new ShoppingCart();
+    const cartElement = this.cart.render();
     const productList = new ProductList();
     const productListElement = productList.render();
 
@@ -105,6 +104,16 @@ class Shop {
     renderHook.append(productListElement);
   }
 }
+class App {
+  static init() {
+    const shop = new Shop();
+    shop.render();
+    this.cart = shop.cart;
+  }
 
-const shop = new Shop();
-shop.render();
+  static addProductToCart(product) {
+    this.cart.addProduct(product);
+  }
+}
+
+App.init(); //call method on the class
