@@ -7,7 +7,7 @@ const userInputs = addMovieModal.querySelectorAll("input");
 const entryTextSection = document.getElementById("entry-text");
 const deleteMovieModal = document.getElementById("delete-modal");
 
-const movies = [];
+const moviesArr = [];
 
 const toggleBackdrop = () => {
   backdrop.classList.toggle("visible");
